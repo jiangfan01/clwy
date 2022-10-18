@@ -8,6 +8,15 @@ export function AddressesList() {
   });
 }
 
+// 编辑
+export function AddressesEdit(id, data) {
+  return request({
+    url: `/addresses/${id}`,
+    method: "put",
+    data,
+  });
+}
+
 // 收货单条
 export function Addresses(id) {
   return request({
@@ -17,25 +26,26 @@ export function Addresses(id) {
 }
 
 // 新增
-export function AddAddresses() {
+export function CreateAddresses(data) {
   return request({
     url: `/addresses`,
     method: "post",
+    data,
   });
 }
 
-// 修改
-export function EditAddresses() {
-  return request({
-    url: `/addresses`,
-    method: "put",
-  });
-}
-
-// 修改
+// 删除
 export function DeleteAddresses(id) {
   return request({
     url: `/addresses/${id}`,
     method: "delete",
+  });
+}
+
+// 修改默认用户
+export function EditAddress(id) {
+  return request({
+    url: `/addresses/${id}/set_default`,
+    method: "put",
   });
 }

@@ -7,14 +7,14 @@
       ><span>元</span>
     </div>
     <div class="btn">
-      <a class="ui-button ui-button-disable" href="/1/#/product/category"
-        ><span>继续购物</span></a
+      <router-link :to="{ name: 'home' }" class="ui-button ui-button-disable"
+        ><span>继续购物</span></router-link
       >
     </div>
     <div class="btn">
-      <a class="ui-button" href="/1/#/order/checkout?address_type=common"
-        ><span>去结算</span></a
-      >
+      <router-link :to="{ name: 'CheckoutView' }" class="ui-button">
+        <span>去结算</span>
+      </router-link>
     </div>
   </div>
 </template>

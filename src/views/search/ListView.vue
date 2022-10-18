@@ -3,19 +3,16 @@
     <div class="page-search" data-log="搜索页">
       <div class="header">
         <div class="left">
-          <a
-            href="/1/#/index"
-            title="长乐未央商城"
-            data-log="HEAD-首页"
-            class="home"
-          >
+          <router-link :to="{ name: 'home' }" class="home">
             <span class="icon-home icon"></span>
-          </a>
+          </router-link>
         </div>
         <div class="tit">
-          <div class="searchword"><input autofocus="autofocus" /></div>
+          <div class="searchword">
+            <input autofocus="autofocus" v-model="searchParams.name" />
+          </div>
         </div>
-        <div class="searchlabel">
+        <div class="searchlabel" @click="init">
           <a>
             <span class="icon icon-search"></span>
           </a>
@@ -35,3 +32,32 @@
     </div>
   </div>
 </template>
+<script>
+import { search } from "@/api/search";
+export default {
+  data() {
+    return {
+      searchParams: {
+        name: "",
+      },
+    };
+  },
+  created() {
+    this.init();
+  },
+  methods: {
+    async init() {
+      const res = await search(this.searchParams);
+      if (res.code !== 20000) {
+        alert(res.message);
+      }
+      if (this.searchParams.name !== "") {
+        this.$router.push({
+          name: "searchList",
+          query: { searchParams: this.searchParams.name },
+        });
+      }
+    },
+  },
+};
+</script>

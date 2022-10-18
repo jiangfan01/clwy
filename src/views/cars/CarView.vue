@@ -40,7 +40,7 @@ export default {
     await this.init();
     setTimeout(() => {
       this.loading = false;
-    }, 100000);
+    }, 500);
   },
   methods: {
     ...mapActions("carts", ["init"]),

@@ -6,6 +6,10 @@
 
 <style>
 #loading {
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #loading img {

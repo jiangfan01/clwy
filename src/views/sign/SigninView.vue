@@ -28,10 +28,10 @@
                           <input
                             class="item_account"
                             autocomplete="off"
-                            type="tel"
                             name="user"
                             id="username"
-                            placeholder="手机号码"
+                            placeholder="账号"
+                            v-model="user.username"
                           />
                         </label>
 
@@ -39,21 +39,14 @@
                           <input
                             class="item_account"
                             type="number"
-                            placeholder="短信验证码"
+                            placeholder="密码"
                             autocomplete="off"
                             id="pwd"
                             name="password"
                             _type="number"
+                            v-model="user.password"
                           />
-                          <input
-                            class="item_account"
-                            type="text"
-                            placeholder="密码"
-                            autocomplete="off"
-                            id="visiablePwd"
-                            name="visiablepwd"
-                            style="display: none"
-                          />
+
                           <div
                             id="sms-code-panel"
                             class="code_panel"
@@ -75,6 +68,7 @@
                           id="login-button"
                           type="button"
                           value="立即登录"
+                          @click="init"
                         />
                       </div>
                       <div class="other_panel clearfix">
@@ -91,9 +85,12 @@
                             class="n_links_area reg_forget_links reg-forget-links"
                             id="custom_display_64"
                           >
-                            <a class="outer-link" href=""
-                              >还没有账号，现在注册</a
+                            <router-link
+                              :to="{ name: 'SignUp' }"
+                              class="outer-link"
                             >
+                              还没有账号，现在注册
+                            </router-link>
                           </div>
                         </div>
                         <div
@@ -140,3 +137,27 @@
     </div>
   </div>
 </template>
+<script>
+import { SignIn } from "@/api/sign";
+export default {
+  data() {
+    return {
+      user: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async init() {
+      const res = await SignIn(this.user);
+      if (res.code !== 20000) {
+        alert(res.message);
+        return;
+      }
+      localStorage.token = res.data.token;
+      this.$router.push({ name: "home" });
+    },
+  },
+};
+</script>
