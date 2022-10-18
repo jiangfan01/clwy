@@ -1,21 +1,22 @@
 # vue_desktop
+# 长乐未央商城
 
-## Project setup
+## 项目安装yarn源
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 项目启动
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### 项目打包
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### 代码格式化
 ```
 yarn lint
 ```
